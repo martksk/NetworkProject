@@ -14,7 +14,7 @@ router.post('/create', async (req, res) => {
   }
 });
 
-router.delete('/delete', async (req, res) => {
+router.delete('/delete/:id', async (req, res) => {
   try {
     const { id } = req.body;
     await Note.findByIdAndDelete(id);
