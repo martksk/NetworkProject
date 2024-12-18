@@ -1,18 +1,22 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const Note = require('../models/Note');
+const Note = require("../models/Note");
+
+router.get("/", (req, res) => {
+  res.send("Search service");
+});
 
 // Show All Notes
-router.get('/all', async (req, res) => {
+router.get("/all", async (req, res) => {
   const notes = await Note.find();
   res.status(200).send(notes);
 });
 
 // Find Note by Title
-router.get('/find/:title', async (req, res) => {
+router.get("/find/:title", async (req, res) => {
   try {
-  const note = await Note.findOne({ title: req.params.title });
-  res.status(200).send(note);
+    const note = await Note.findOne({ title: req.params.title });
+    res.status(200).send(note);
   } catch (error) {
     res.status(404).send(error.message);
   }
